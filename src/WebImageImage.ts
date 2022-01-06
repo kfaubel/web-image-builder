@@ -74,13 +74,15 @@ export class WebImageImage {
 
             if (url !== undefined) {
                 
-                // this.logger.verbose(`ApodImage: hdurl: ${pictureUrl}`);
+                // this.logger.verbose(`WebImage: hdurl: ${pictureUrl}`);
                 
                 // first try to download a jpg
                 try {
                     const response: AxiosResponse = await axios.get(url, {responseType: "stream"} );
                     picture = await pure.decodeJPEGFromStream(response.data);
                 } catch (e) {
+                    this.logger.error(`GetImage: Failed to load ${url}`);
+                    this.logger.error(`GetImage: Error: ${e}`);
                     picture = null;
                 }
             }

@@ -8,7 +8,7 @@ import { WebImageBuilder } from "./WebImageBuilder";
 async function run() {
     dotenv.config();  // Load var from .env into the environment
 
-    const logger: Logger = new Logger("apod-builder", "verbose");
+    const logger: Logger = new Logger("WebImage", "verbose");
     //const cache: Kache = new Kache(logger, "apod-cache.json"); 
     const simpleImageWriter: SimpleImageWriter = new SimpleImageWriter(logger, "images");
     const webImageBuilder: WebImageBuilder = new WebImageBuilder(logger, null, simpleImageWriter);
