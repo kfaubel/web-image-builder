@@ -43,9 +43,7 @@ export class Logger {
     }
 
     public log(text: string): void {
-        if (this.level <= this._INFO) {
-            console.log(`[${this.module} I] ${text}`);
-        } 
+        this.info(text);
     }
 
     public info(text: string): void {
@@ -61,7 +59,6 @@ export class Logger {
     }
 
     public trace(text: string): void {
-        if (this.level <= this._VERBOSE) return;
-        console.debug(`[${this.module} V] ${text}`);
+        this.verbose(text);
     }
 }

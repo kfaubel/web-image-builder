@@ -2,7 +2,6 @@
 import dotenv from "dotenv";
 import { Logger } from "./Logger";
 import { SimpleImageWriter } from "./SimpleImageWriter";
-import { Kache } from "./Kache";
 import { WebImageBuilder } from "./WebImageBuilder";
 
 async function run() {

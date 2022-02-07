@@ -22,16 +22,16 @@ export class WebImageBuilder {
 
             const result = await webImageImage.getImage(url);
         
-            if (result !== null && result.imageData !== null ) {
-                this.logger.info(`CreateImages: Writing: ${fileName}`);
-                this.writer.saveFile(fileName, result.imageData.data);
+            if (result !== null && result !== null ) {
+                this.logger.info(`WebImageBuilder: Writing: ${fileName}`);
+                this.writer.saveFile(fileName, result.data);
             } else {
-                this.logger.error("CreateImages: No imageData returned from webImageImage.getImage");
+                this.logger.warn(`WebImageBuilder: No image available for: ${fileName}`);
                 return false;
             }
             
         } catch (e) {
-            this.logger.error(`CreateImages: Exception: ${e}`);
+            this.logger.error(`WebImageBuilder: Exception: ${e}`);
             return false;
         }
 
