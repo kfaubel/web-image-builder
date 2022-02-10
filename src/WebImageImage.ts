@@ -32,15 +32,19 @@ export class WebImageImage {
             headers: {                        
                 "Content-Encoding": "gzip"
             },
-            timeout: 2000
+            timeout: 20000
         };
 
+        const startTime = new Date();
         await axios.get(url, options)
             .then(async (res: AxiosResponse) => {
+                if (typeof process.env.TRACK_GET_TIMES !== "undefined" ) {
+                    this.logger.info(`WebImageImage: GET TIME: ${new Date().getTime() - startTime.getTime()}ms`);
+                }
                 pictureBuffer = Buffer.from(res.data, "binary");
             })
             .catch((error) => {
-                this.logger.warn(`GetImage: Failed to load ${url}: ${error}`);
+                this.logger.warn(`WebImageImage: Failed to load ${url}: ${error}`);
             });
 
         if (pictureBuffer === null) {
@@ -147,7 +151,7 @@ export class WebImageImage {
             return jpegImg;
             
         } catch (e: any) {
-            this.logger.warn(`NewsImage: Exception: ${e}, Picture: ${url as string}\n ${e.stack}`);
+            this.logger.warn(`WebImageImage: Exception: ${e}, Picture: ${url as string}\n ${e.stack}`);
             return null;
         } 
     }
