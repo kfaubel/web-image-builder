@@ -20,5 +20,5 @@ export interface ImageWriterInterface {
 
 export declare class WebImageBuilder {
     constructor(logger: LoggerInterface, cache: KacheInterface, writer: ImageWriterInterface);
-    CreateImages(url: string, fileName: string): Promise<boolean>
+    CreateImages(url: string, fileName: string, username?: string, password?: string): Promise<boolean>
 }
