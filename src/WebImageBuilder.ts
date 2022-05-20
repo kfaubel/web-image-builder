@@ -16,11 +16,11 @@ export class WebImageBuilder {
         this.writer = writer;
     }
 
-    public async CreateImages(url: string, fileName: string): Promise<boolean>{
+    public async CreateImages(url: string, fileName: string, username?: string, password?: string): Promise<boolean>{
         try {
             const webImageImage: WebImageImage = new WebImageImage(this.logger);
 
-            const result = await webImageImage.getImage(url);
+            const result = await webImageImage.getImage(url, username, password);
         
             if (result !== null && result !== null ) {
                 this.logger.info(`WebImageBuilder: Writing: ${fileName}`);
@@ -31,7 +31,7 @@ export class WebImageBuilder {
             }
             
         } catch (e) {
-            this.logger.error(`WebImageBuilder: Exception: ${e}`);
+            this.logger.error(`WebImageBuilder: Exception getting ${fileName}: ${e}`);
             return false;
         }
 

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import dotenv from "dotenv";
 import { Logger } from "./Logger";
 import { SimpleImageWriter } from "./SimpleImageWriter";
@@ -15,7 +14,9 @@ async function run() {
     const url = "https://www.weather.gov/images/box/winter/StormTotalSnow.jpg";
     const fileName = "boxStormTotalSnow.jpg";
    
-    const success: boolean = await webImageBuilder.CreateImages(url, fileName);
+    let success = true;
+    success = success && await webImageBuilder.CreateImages(url, fileName);
+    //success = success && await webImageBuilder.CreateImages("http://domain.com:20180/cgi-bin/snapshot.cgi", "FrontCove.jpg", "user", "password");
 
     logger.info(`test.ts: Done: ${success ? "successfully" : "failed"}`); 
 
