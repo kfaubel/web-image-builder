@@ -1,0 +1,2 @@
+WEB_IMAGES="[{"url": "https://www.weather.gov/images/box/winter/StormTotalSnow.jpg", "fileName": "boxStormTotalSnow.jpg", "fetchIntervalMin": "120"}]"
+TRACK_GET_TIMES=true

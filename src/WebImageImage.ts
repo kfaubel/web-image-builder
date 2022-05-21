@@ -51,8 +51,8 @@ export class WebImageImage {
                 }
                 pictureBuffer = Buffer.from(res.data, "binary");
             })
-            .catch(async err => {
-                if (err.response.status === 401) {
+            .catch(async (err: any) => {
+                if (err.response?.status === 401) {
                     // The following digest retry was based on a post by vkarpov15 Valeri Karpov here: https://github.com/axios/axios/issues/686
                     // I had to merge some code from a previous Java implementation I worked on a few years ago.
                     // In particular: 
@@ -97,9 +97,11 @@ export class WebImageImage {
                             }
                             pictureBuffer = Buffer.from(res.data, "binary");
                         })
-                        .catch((error) => {
+                        .catch((error: any) => {
                             this.logger.warn(`WebImageImage::getPicture: Failed to load ${url} with digest auth: ${error}`);
                         });
+                } else {
+                    this.logger.warn(`WebImageImage::getPicture: Failed to load ${url} (not 401): ${err}`);
                 }
             });
             

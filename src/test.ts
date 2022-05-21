@@ -1,22 +1,40 @@
 import dotenv from "dotenv";
+import { Kache } from "./Kache";
 import { Logger } from "./Logger";
 import { SimpleImageWriter } from "./SimpleImageWriter";
 import { WebImageBuilder } from "./WebImageBuilder";
+
+interface WebImageItem {
+    url: string;
+    fileName: string;
+    fetchIntervalMin: number
+    username?: string;
+    password?: string;
+}
 
 async function run() {
     dotenv.config();  // Load var from .env into the environment
 
     const logger: Logger = new Logger("WebImage", "verbose");
-    //const cache: Kache = new Kache(logger, "apod-cache.json"); 
+    const cache: Kache = new Kache(logger, "web-image.json"); 
     const simpleImageWriter: SimpleImageWriter = new SimpleImageWriter(logger, "images");
-    const webImageBuilder: WebImageBuilder = new WebImageBuilder(logger, null, simpleImageWriter);
+    const webImageBuilder: WebImageBuilder = new WebImageBuilder(logger, cache, simpleImageWriter);
 
-    const url = "https://www.weather.gov/images/box/winter/StormTotalSnow.jpg";
-    const fileName = "boxStormTotalSnow.jpg";
-   
+    let webImageList: Array<WebImageItem>;
+    const WEB_IMAGES: string | undefined = process.env.WEB_IMAGES;
+    if (WEB_IMAGES === undefined) {
+        logger.error("Missing config: WEB_IMAGES");
+        throw new Error("Missing config");
+    } else {
+        webImageList = JSON.parse(WEB_IMAGES);
+    }
+
+    logger.info(`WEB_IMAGES: ${JSON.stringify(webImageList, null, 4)}`);
+
     let success = true;
-    success = success && await webImageBuilder.CreateImages(url, fileName);
-    //success = success && await webImageBuilder.CreateImages("http://domain.com:20180/cgi-bin/snapshot.cgi", "FrontCove.jpg", "user", "password");
+    for (const webImageItem of webImageList) {
+        success = success && await webImageBuilder.CreateImages(webImageItem.url, webImageItem.fileName, webImageItem.fetchIntervalMin, webImageItem.username, webImageItem.password);
+    }
 
     logger.info(`test.ts: Done: ${success ? "successfully" : "failed"}`); 
 
