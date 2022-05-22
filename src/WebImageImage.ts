@@ -28,6 +28,8 @@ export class WebImageImage {
         let picture: MyImageType | null = null;
         let pictureBuffer: Buffer | null = null;
 
+        this.logger.info(`WebImageImage::getPicture: url: ${url} with: ${username ?? "No username"}`);
+
         const options: AxiosRequestConfig = {
             responseType: "arraybuffer",
             headers: {
