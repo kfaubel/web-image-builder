@@ -87,6 +87,8 @@ export class WebImageImage {
                     const HA2 = md5(`GET:${uri}`);
                     const response = md5(`${HA1}:${nonce}:${nonceCount}:${cnonce}:auth:${HA2}`);
 
+                    options.headers = options.headers ?? {};
+
                     options.headers.authorization = `Digest username="${username}",realm="${realm}",nonce="${nonce}",` +
                                                     `uri="${uri}",qop="auth",opaque="${opaque}",algorithm="MD5",` +
                                                     `response="${response}",nc="${nonceCount}",cnonce="${cnonce}"`;
