@@ -1,6 +1,6 @@
 {
   "name": "web-image-builder",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Pull image and store for later retrevial Solve CORS restrictions",
   "main": "index.js",
   "types": "index.d.ts",
@@ -15,22 +15,21 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "axios": "^1.4.0",
+    "axios": "^1.6.8",
     "dateformat": "^5.0.3",
     "jpeg-js": "^0.4.4",
-    "pureimage": "^0.3.17"
+    "pureimage": "^0.4.13"
   },
   "devDependencies": {
-    "@types/node": "^20.4.9",
-    "@typescript-eslint/eslint-plugin": "^6.3.0",
-    "@typescript-eslint/parser": "^6.3.0",
-    "dotenv": "^16.3.1",
-    "eslint": "^8.46.0",
-    "np": "^8.0.4",
-    "prettier": "^3.0.1",
+    "@types/node": "^20.12.12",
+    "@typescript-eslint/eslint-plugin": "^7.9.0",
+    "@typescript-eslint/parser": "^7.9.0",
+    "dotenv": "^16.4.5",
+    "np": "^10.0.5",
+    "prettier": "^3.2.5",
     "shx": "^0.3.4",
     "ts-node-dev": "^2.0.0",
-    "typescript": "^5.1.6"
+    "typescript": "^5.4.5"
   },
   "repository": {
     "type": "git",
