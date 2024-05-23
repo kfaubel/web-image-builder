@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import dotenv from "dotenv";
 import { Kache } from "./Kache";
 import { Logger } from "./Logger";
@@ -7,7 +8,8 @@ import { WebImageBuilder } from "./WebImageBuilder";
 interface WebImageItem {
     url: string;
     fileName: string;
-    fetchIntervalMin: number
+    fetchIntervalMin: number;
+    validMin: number;
     username?: string;
     password?: string;
 }
@@ -33,7 +35,12 @@ async function run() {
 
     let success = true;
     for (const webImageItem of webImageList) {
-        success = success && await webImageBuilder.CreateImages(webImageItem.url, webImageItem.fileName, webImageItem.fetchIntervalMin, webImageItem.username, webImageItem.password);
+        success = success && await webImageBuilder.CreateImage(webImageItem.url, 
+                                                               webImageItem.fileName, 
+                                                               webImageItem.fetchIntervalMin, 
+                                                               webImageItem.validMin, 
+                                                               webImageItem.username, 
+                                                               webImageItem.password);
     }
 
     logger.info(`test.ts: Done: ${success ? "successfully" : "failed"}`); 

@@ -21,7 +21,9 @@ export class WebImageImage {
 
     /**
      * Simple method to fetch the image given a URL
-     * @param url 
+     * @param url - URL of the image
+     * @param username - If needed for digest authentication
+     * @param password - If needed for digest authentication
      * @returns MyImageType (height, width, data) of null
      */
     private async getPicture(url: string, username?: string, password?: string): Promise<MyImageType | null> {
@@ -52,6 +54,7 @@ export class WebImageImage {
                     this.logger.info(`WebImageImage: GET TIME: ${new Date().getTime() - startTime.getTime()}ms`);
                 }
                 pictureBuffer = Buffer.from(res.data, "binary");
+                this.logger.verbose(`WebImageImage::getPicture: Loaded ${url} with ${pictureBuffer.length} bytes`);
             })
             .catch(async (err: any) => {
                 if (err.response?.status === 401) {

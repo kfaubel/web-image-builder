@@ -32,13 +32,13 @@ export class Logger {
 
     public error(text: string): void {
         if (this.level <= this._ERROR) {
-            console.error(`[${this.module} E] ${text}`);
+            console.error(`[${new Date().toLocaleString()} ${this.module} E] ${text}`);
         }
     }
 
     public warn(text: string): void {
         if (this.level <= this._WARN) {
-            console.log(`[${this.module} W] ${text}`);
+            console.log(`[${new Date().toLocaleString()} ${this.module} W] ${text}`);
         } 
     }
 
@@ -48,13 +48,13 @@ export class Logger {
 
     public info(text: string): void {
         if (this.level <= this._INFO) {
-            console.log(`[${this.module} I] ${text}`);
+            console.log(`[${new Date().toLocaleString()} ${this.module} I] ${text}`);
         } 
     }
 
     public verbose(text: string): void {
         if (this.level <= this._VERBOSE) {
-            console.log(`[${this.module} V] ${text}`);
+            console.log(`[${new Date().toLocaleString()} ${this.module} V] ${text}`);
         } 
     }
 
