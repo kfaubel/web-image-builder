@@ -16,9 +16,11 @@ export interface KacheInterface {
 
 export interface ImageWriterInterface {
     saveFile(fileName: string, buf: Buffer): void;
+    deleteFile(fileName: string): void;
+    checkFile(fileName: string): boolean;
 }
 
 export declare class WebImageBuilder {
     constructor(logger: LoggerInterface, cache: KacheInterface, writer: ImageWriterInterface);
-    CreateImages(url: string, fileName: string, fetchIntervalMin: number, username?: string, password?: string): Promise<boolean>
+    CreateImage(url: string, fileName: string, fetchIntervalMin: number, username?: string, password?: string): Promise<boolean>
 }
