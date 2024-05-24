@@ -1,6 +1,6 @@
 {
     "name": "web-image-builder",
-    "version": "2.0.1",
+    "version": "2.0.2",
     "description": "Pull image and store for later retrevial Solve CORS restrictions",
     "main": "index.js",
     "types": "index.d.ts",

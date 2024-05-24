@@ -15,9 +15,9 @@ export interface KacheInterface {
 }
 
 export interface ImageWriterInterface {
-    saveFile(fileName: string, buf: Buffer): void;
-    deleteFile(fileName: string): void;
-    checkFile(fileName: string): boolean;
+    saveFile(fileName: string, dataBuffer: Buffer, contentType?: string): Promise<boolean>
+    deleteFile(fileName: string): Promise<boolean>;
+    checkFile(fileName: string): Promise<boolean>;
 }
 
 export declare class WebImageBuilder {
