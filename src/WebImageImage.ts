@@ -37,7 +37,7 @@ export class WebImageImage {
             headers: {
                 "Content-Encoding": "gzip"
             },
-            timeout: 20000
+            timeout: 30000
         };
 
         // url:  http://domain.com:20180/cgi-bin/snapshot.cgi
