@@ -1,51 +1,51 @@
 {
     "name": "web-image-builder",
-    "version": "2.0.5",
+    "version": "2.0.6",
     "description": "Pull image and store for later retrevial Solve CORS restrictions",
     "main": "index.js",
     "types": "index.d.ts",
     "scripts": {
-      "build": "npm run clean && tsc",
-      "clean": "shx rm -rf build/*",
-      "test": "npm run build && node app.js",
-      "start": "npm run build && node app.js",
-      "prepare": "npm run build",
-      "publish": "echo Published.",
-      "install": "echo Installed.",
-      "lint": "eslint"
+        "build": "npm run clean && tsc",
+        "clean": "shx rm -rf build/*",
+        "test": "npm run build && node app.js",
+        "start": "npm run build && node app.js",
+        "prepare": "npm run build",
+        "publish": "echo Published.",
+        "install": "echo Installed.",
+        "lint": "eslint"
     },
     "dependencies": {
-      "axios": "^1.7.2",
-      "dateformat": "^5.0.3",
-      "jpeg-js": "^0.4.4",
-      "pureimage": "^0.4.13"
+        "axios": "^1.12.2",
+        "dateformat": "^5.0.3",
+        "jpeg-js": "^0.4.4",
+        "pngjs": "^7.0.0",
+        "pureimage": "^0.4.18"
     },
     "devDependencies": {
-      "@types/node": "^20.12.12",
-      "@typescript-eslint/eslint-plugin": "^7.10.0",
-      "@typescript-eslint/parser": "^7.10.0",
-      "dotenv": "^16.4.5",
-      "np": "^10.0.5",
-      "prettier": "^3.2.5",
-      "shx": "^0.3.4",
-      "ts-node-dev": "^2.0.0",
-      "typescript": "^5.4.5"
+        "@types/node": "^24.6.0",
+        "@types/pngjs": "^6.0.5",
+        "@typescript-eslint/eslint-plugin": "^8.45.0",
+        "@typescript-eslint/parser": "^8.45.0",
+        "dotenv": "^17.2.3",
+        "prettier": "^3.6.2",
+        "shx": "^0.4.0",
+        "ts-node-dev": "^2.0.0",
+        "typescript": "^5.9.2"
     },
     "repository": {
-      "type": "git",
-      "url": "git+https://github.com/kfaubel/web-image-builder.git"
+        "type": "git",
+        "url": "git+https://github.com/kfaubel/web-image-builder.git"
     },
     "author": "Ken Faubel",
     "license": "ISC",
     "bugs": {
-      "url": "https://github.com/kfaubel/web-image-builder/issues"
+        "url": "https://github.com/kfaubel/web-image-builder/issues"
     },
     "homepage": "https://github.com/kfaubel/web-image-builder#readme",
     "files": [
-      "build/**/*",
-      "fonts/**/*",
-      "index.js",
-      "index.d.ts"
+        "build/**/*",
+        "fonts/**/*",
+        "index.js",
+        "index.d.ts"
     ]
-  }
-  
+}

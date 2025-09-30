@@ -4,6 +4,7 @@ import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 import * as pure from "pureimage";
 import { LoggerInterface } from "./Logger";
 import JPG from "jpeg-js";
+import { PNG } from "pngjs";
 import crypto from "crypto";
 
 export interface MyImageType {
@@ -117,7 +118,13 @@ export class WebImageImage {
             return null;
         }
 
-        picture = JPG.decode(pictureBuffer, { maxMemoryUsageInMB: 800 });
+        if (url.includes("jpg")) {
+            picture = JPG.decode(pictureBuffer, { maxMemoryUsageInMB: 800 });
+        } else if (url.includes("png")) {
+            picture = PNG.sync.read(pictureBuffer);
+        } else {
+            this.logger.warn(`Requested image in not a 'jpg' or 'png': ${url}`);
+        }
 
         return picture;
     }
