@@ -31,7 +31,7 @@ export class WebImageImage {
         let picture: MyImageType | null = null;
         let pictureBuffer: Buffer | null = null;
 
-        this.logger.info(`WebImageImage::getPicture: url: ${url} with: ${username ?? "No username"}`);
+        this.logger.info(`WebImageImage::getPicture: url: ${url} as: ${username ?? "Anonymous"}`);
 
         const options: AxiosRequestConfig = {
             responseType: "arraybuffer",
@@ -115,15 +115,29 @@ export class WebImageImage {
             
 
         if (pictureBuffer === null) {
+            this.logger.warn(`WebImageImage::getPicture: Failed to load ${url}, buffer is null`);
             return null;
         }
 
-        if (url.includes("jpg")) {
+        if (!Buffer.isBuffer(pictureBuffer)) {
+            this.logger.warn(`WebImageImage::getPicture: Loaded image is not a buffer ${url}`);
+            return null;
+        }
+
+        if ((pictureBuffer as Buffer).length < 10) {
+            this.logger.warn(`WebImageImage::getPicture: Loaded image is too small ${url} with ${(pictureBuffer as Buffer).length} bytes`);
+            return null;
+        }
+
+        // JPEG signature: FF D8 FF
+        // PNG signature: 89 50 4E 47 0D 0A 1A 0A
+        if ((pictureBuffer as Buffer).subarray(0, 3).equals(Buffer.from([0xFF, 0xD8, 0xFF]))) {
             picture = JPG.decode(pictureBuffer, { maxMemoryUsageInMB: 800 });
-        } else if (url.includes("png")) {
+        } else if ((pictureBuffer as Buffer).subarray(0, 8).equals(Buffer.from([0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A]))) {
             picture = PNG.sync.read(pictureBuffer);
         } else {
             this.logger.warn(`Requested image in not a 'jpg' or 'png': ${url}`);
+            return null;
         }
 
         return picture;
